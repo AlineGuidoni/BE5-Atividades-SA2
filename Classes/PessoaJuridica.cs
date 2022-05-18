@@ -1,14 +1,16 @@
+using System.Text.RegularExpressions;
 using BE5.Interfaces;
 
 namespace BE5.Classes
 {
   public class PessoaJuridica : Pessoa, IPessoaJuridica
   {
-    public string ?cnpj { get; set; }
-    public string ?razao { get; set; }
-    
-    
-    
+    public string? cnpj { get; set; }
+    public string? razao { get; set; }
+
+
+    //XX.XXXX.XXX/0001-XX
+    //XXXXXXXXX0001XX
     public override float PagarImposto(float rendimento)
     {
       throw new NotImplementedException();
@@ -16,7 +18,24 @@ namespace BE5.Classes
 
     public bool ValidarCnpj(string cnpj)
     {
-      throw new NotImplementedException();
+      if (Regex.IsMatch(cnpj, @"(^(\d{2}.\d{3}.\d{3}/\d{4}-\d{2})|(\d{14})$)"))
+      {
+        if (cnpj.Length == 18)
+        {
+          if (cnpj.Substring(11, 4) == "0001")
+          {
+            return true;
+          }
+        }
+        else if (cnpj.Length == 14)
+        {
+          if (cnpj.Substring(8, 4) == "0001")
+          {
+            return true;
+          }
+        }
+      }
+      return false;
     }
   }
 }
