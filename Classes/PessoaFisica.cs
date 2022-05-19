@@ -36,7 +36,7 @@ namespace BE5.Classes
       // verificar se a string está em formato valido
       if (DateTime.TryParse(dataNasc, out dataConvertida))
       {
-        //tryParse tenta converster e coloca na saida a data convertida
+        //tryParse tenta converter e coloca na saida a data convertida
         Console.WriteLine($"{dataConvertida}");
 
 
