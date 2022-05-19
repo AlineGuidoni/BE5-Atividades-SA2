@@ -47,7 +47,7 @@ do
       novaPF.nome = "Aline";
       novaPF.dataNascimento = "06/12/1984";
       novaPF.cpf = "12345678019";
-      novaPF.rendimento = 1000.0f;
+      novaPF.rendimento = 2500.0f;
       novoEnd.logradouro = "Alameda Barao de Limeira";
       novoEnd.numero = 999;
       novoEnd.complemento = "Centro de Informatica";
@@ -59,6 +59,7 @@ do
           Nome: {novaPF.nome}
           Endereco: {novaPF.endereco.logradouro}, {novaPF.endereco.numero}
           Maior de idade: {metodoPf.ValidarDataNascimento(novaPF.dataNascimento)}
+          Taxa de imposot a ser paga é: {metodoPf.PagarImposto(novaPF.rendimento).ToString("C")}
         ");
       Console.WriteLine($"Aperte 'Enter' para continuar...");
       Console.ReadLine();
@@ -83,6 +84,7 @@ do
         Razao Social: {novaPj.razao}
         CNPJ: {novaPj.cnpj}
         CNPJ VÁLIDO: {metodoPj.ValidarCnpj(novaPj.cnpj)}
+        Taxa de imposot a ser paga é: {metodoPj.PagarImposto(novaPj.rendimento).ToString("C")}
       ");
       Console.WriteLine($"Aperte 'Enter' para continuar...");
       Console.ReadLine();
