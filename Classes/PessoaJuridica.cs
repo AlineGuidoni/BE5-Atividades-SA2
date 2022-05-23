@@ -8,6 +8,8 @@ namespace BE5.Classes
     public string? cnpj { get; set; }
     public string? razao { get; set; }
 
+    public string caminho { get; private set; } = "Database/PessoaJuridica.csv";
+
 
     //XX.XXXX.XXX/0001-XX
     //XXXXXXXXX0001XX
@@ -60,5 +62,41 @@ namespace BE5.Classes
       }
       return false;
     }
+
+    public void Inserir(PessoaJuridica pj)
+    { // string foi tranformada em array!
+      VerificarPastaArquivo(caminho);
+      string[] pjString = { $"{pj.nome},{pj.cnpj},{pj.razao}" };
+      File.AppendAllLines(caminho, pjString);
+    }
+
+
+    public List<PessoaJuridica> ler()
+    {
+      List<PessoaJuridica> listaPj = new List<PessoaJuridica>();
+
+      string[] linhas = File.ReadAllLines(caminho);
+
+      foreach (string cadaLinha in linhas)
+      {
+        string[] atributos = cadaLinha.Split(",");
+
+        PessoaJuridica cadaPj = new PessoaJuridica();
+
+        cadaPj.nome = atributos[0];
+        cadaPj.cnpj = atributos[1];
+        cadaPj.razao = atributos[2];
+
+        listaPj.Add(cadaPj);
+
+
+      }
+      return listaPj;
+
+
+
+    }
+
   }
+
 }

@@ -72,7 +72,7 @@ do
             Console.WriteLine($"Digite o nome da pessoa física que deseja cadastrar:");
             novaPF.nome = Console.ReadLine();
 
-
+            /*
             bool dataValida;
             do
             {
@@ -119,18 +119,32 @@ do
               novoEnd.endComercial = false;
             }
             novaPF.endereco = novoEnd;
-            listaPf.Add(novaPF);
+            // listaPf.Add(novaPF);
+            //StreamWriter sw = new StreamWriter($"{novaPF.nome}.txt");
+            //sw.WriteLine(novaPF.nome);
+            //sw.Close();
+
+            */
+            using (StreamWriter sw = new StreamWriter($"{novaPF.nome}.txt"))
+            {
+              sw.WriteLine(novaPF.nome);
+            }
+
+
+
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"Cadastro realizado com sucesso!!!");
             Console.ResetColor();
             Thread.Sleep(3000);
             //Console.Clear();
-
             break;
+
+
 
           case "2":
 
             Console.Clear();
+            /*
             if (listaPf.Count > 0)
             {
               foreach (PessoaFisica cadaPessoa in listaPf)
@@ -153,7 +167,20 @@ do
               Thread.Sleep(3000);
 
             }
+            
+            */
+            using (StreamReader sr = new StreamReader("Aline.txt"))
+            {
+              string linha;
+              while ((linha = sr.ReadLine()) != null)
+              {
+                Console.WriteLine($"{linha}");
+              }
+            }
+            Console.WriteLine($"Aperte 'ENTER' para continuar...");
+            Console.ReadLine();
             break;
+
 
           case "0":
             break;
@@ -215,11 +242,7 @@ do
               }
             } while (cnpjValido == false);
 
-
-
             //novaPj.cnpj = Console.ReadLine();
-
-
             Console.WriteLine($"Digite a razão social:");
             novaPj.razao = Console.ReadLine();
 
@@ -246,6 +269,9 @@ do
               novoEndPj.endComercial = false;
             }
             novaPj.endereco = novoEndPj;
+
+            metodoPj.Inserir(novaPj);
+
             listaPj.Add(novaPj);
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine($"Cadastro realizado com sucesso!!!");

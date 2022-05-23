@@ -26,7 +26,7 @@ namespace BE5.Classes
       // verificar se a string está em formato valido
       if (DateTime.TryParse(dataNasc, out dataConvertida))
       { //tryParse tenta converter e coloca na saida a data convertida
-        Console.WriteLine($"{dataConvertida}");
+        //Console.WriteLine($"{dataConvertida}");
         DateTime dataAtual = DateTime.Today;
         double anos = (dataAtual - dataConvertida).TotalDays / 365;
         if (anos >= 18)
